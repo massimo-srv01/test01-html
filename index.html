@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina con Menu a Sinistra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .menu-item {
+            margin-bottom: 15px;
+        }
+        
+        .menu-title {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 8px;
+            background-color: #444;
+            border-radius: 4px;
+        }
+        
+        .submenu {
+            margin-top: 5px;
+            margin-left: 15px;
+            display: none;
+        }
+        
+        .submenu.active {
+            display: block;
+        }
+        
+        .submenu-item {
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .submenu-item:hover {
+            background-color: #555;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2 style="margin-bottom: 20px;">Menu</h2>
+        
+        <div class="menu-item">
+            <div class="menu-title" onclick="toggleSubmenu(this)">Prodotti</div>
+            <div class="submenu">
+                <div class="submenu-item" onclick="showContent('prodotto1')">Prodotto 1</div>
+                <div class="submenu-item" onclick="showContent('prodotto2')">Prodotto 2</div>
+            </div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="menu-title" onclick="toggleSubmenu(this)">Servizi</div>
+            <div class="submenu">
+                <div class="submenu-item" onclick="showContent('servizio1')">Servizio 1</div>
+                <div class="submenu-item" onclick="showContent('servizio2')">Servizio 2</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h1>Benvenuto nella mia pagina</h1>
+        
+        <div id="home" class="content-section active">
+            <h2>Homepage</h2>
+            <p>Benvenuto! Seleziona una voce dal menu per visualizzare il contenuto.</p>
+        </div>
+        
+        <div id="prodotto1" class="content-section">
+            <h2>Prodotto 1</h2>
+            <p>Questa è la pagina del Prodotto 1.</p>
+        </div>
+        
+        <div id="prodotto2" class="content-section">
+            <h2>Prodotto 2</h2>
+            <p>Questa è la pagina del Prodotto 2.</p>
+        </div>
+        
+        <div id="servizio1" class="content-section">
+            <h2>Servizio 1</h2>
+            <p>Questa è la pagina del Servizio 1.</p>
+        </div>
+        
+        <div id="servizio2" class="content-section">
+            <h2>Servizio 2</h2>
+            <p>Questa è la pagina del Servizio 2.</p>
+        </div>
+    </div>
+    
+    <script>
+        function toggleSubmenu(element) {
+            const submenu = element.nextElementSibling;
+            submenu.classList.toggle('active');
+        }
+        
+        function showContent(id) {
+            // Nascondi tutte le sezioni
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostra la sezione selezionata
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html>
